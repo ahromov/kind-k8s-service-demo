@@ -1,0 +1,14 @@
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+logging:
+  level:
+    root: info
+    com:
+      example: info
+    org.springframework:
+      security: info
+      web: info

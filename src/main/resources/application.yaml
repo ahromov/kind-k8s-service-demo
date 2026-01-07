@@ -1,0 +1,93 @@
+service:
+  #API info
+  open-api:
+    title: Demo Service API #change name of the service
+    version: 1.0
+    description: API documentation of Demo Service #change name of the service
+    use-bearer-token: false
+    server-url: http://localhost/api
+  #Disable CORS, because it is handled by the reverse proxy
+  cors:
+    enabled: false
+
+#Swagger API
+springdoc:
+  default-produces-media-type: application/json
+  writer-with-default-pretty-printer: true
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /
+
+#App & Spring properties
+info:
+  app: ^project.description^
+
+spring:
+  application:
+    name: ^project.name^
+  main:
+    banner-mode: off
+  messages:
+    basename: messages
+    fallback-to-system-locale: false
+  web:
+    resources:
+      add-mappings: false
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    url: #jdbc:postgresql://localhost:5432/demo
+    username: #postgres
+    password: #postgres
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/db.changelog-master.yaml
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        jdbc:
+          batch_size: 20
+          fetch_size: 20
+          batch_versioned_data: true
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+management:
+  info:
+    git:
+      mode: simple
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - prometheus
+          - livenessstate
+          - readinessstate
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  observations:
+    annotations:
+      enabled: true
+  server:
+    port: 8081

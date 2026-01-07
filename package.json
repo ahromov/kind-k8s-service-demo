@@ -1,0 +1,42 @@
+{
+  "name": "alias-token-service",
+  "version": "1.0.0",
+  "description": "Сервіс надає можливість отримати список токенів по ідентифікатору картки а також отримати зашифрований payload з новим\r токеном для подальшого додавання клієнтом своєї картки в цифровий гаманець Goggle Pay або Apple Pay в мобільному\r застосунку МТВ360.",
+  "main": "index.js",
+  "scripts": {
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "spotless:apply": "node scripts/spotless-apply.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,css,scss,html,json,yml,yaml,md}": "prettier --write",
+    "*.java": "npm run spotless:apply"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtb-digital/alias-token-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mtb-digital/alias-token-service/issues"
+  },
+  "homepage": "https://github.com/mtb-digital/alias-token-service#readme",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "listr2": "^9.0.5",
+    "micromatch": "^4.0.8",
+    "nano-spawn": "^2.0.0",
+    "pidtree": "^0.6.0",
+    "string-argv": "^0.3.2",
+    "yaml": "^2.8.1"
+  }
+}

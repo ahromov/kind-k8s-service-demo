@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: postgres
+    password: postgres
+
+logging:
+  level:
+    root: info
+    com:
+      example: debug
+    org.springframework:
+      security: debug
+      web: debug

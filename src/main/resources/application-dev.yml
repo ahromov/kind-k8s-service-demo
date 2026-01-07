@@ -1,0 +1,7 @@
+logging:
+  level:
+    root: info
+    com.example: debug
+    org.springframework:
+      security: info
+      web: info

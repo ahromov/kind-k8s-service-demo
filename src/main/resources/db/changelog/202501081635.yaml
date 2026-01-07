@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-demo
+      author: Andrii Hromov
+      changes:
+        - insert:
+            tableName: demo_entity
+            columns:
+              - column:
+                  name: external_id
+                  value: "INIT-0001"
+              - column:
+                  name: status
+                  value: "NEW"

@@ -1,0 +1,22 @@
+# Token (JSON формат)
+***~"token"\s*:\s*"[^"]*"
+
+# Token (key=value)
+token=***~(?i)\btoken\s*=\s*[^,\s]+
+
+# Token (JSON)
+"token":"***"~(?i)"token"\s*:\s*"[^"]*"
+
+# Authorization: Bearer (JWT)
+Authorization: Bearer **********~(?i)Authorization:\s*Bearer\s+[A-Za-z0-9._\-]+=*[A-Za-z0-9._\-]*\b
+
+# Password (JSON і key=value)
+***~"password"\s*:\s*"[^"]*"
+***~(?i)(?<=\bpassword[=:]\s*)[A-Za-z0-9_-]+
+
+# Login (JSON і key=value)
+***~"login"\s*:\s*"[^"]*"
+***~(?i)(?<=\blogin[=:]\s*)[A-Za-z0-9._-]+
+
+# PartnerToken
+********-****-****-****-********$1~(?i)(?<=\bpartnerToken[=:]\s*)[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{8}([0-9a-fA-F]{4})\b

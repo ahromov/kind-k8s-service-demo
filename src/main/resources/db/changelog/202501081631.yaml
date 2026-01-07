@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-demo-table
+      author: Andrii Hromov
+      changes:
+        - createSequence:
+            sequenceName: demo_entity_id_seq
+            startValue: 1
+            incrementBy: 1
+
+        - createTable:
+            tableName: demo_entity
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: external_id
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+
+        - addDefaultValue:
+            tableName: demo_entity
+            columnName: id
+            defaultValueComputed: "nextval('demo_entity_id_seq'::regclass)"
+
+        - addUniqueConstraint:
+            tableName: demo_entity
+            columnNames: external_id
+            constraintName: uq_demo_entity_external_id
+
+        - createIndex:
+            tableName: demo_entity
+            indexName: ix_demo_entity_status
+            columns:
+              - column:
+                  name: status

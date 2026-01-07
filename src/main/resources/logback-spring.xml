@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <springProperty name="ROOT_LEVEL" source="logging.level.root" defaultValue="INFO"/>
+
+    <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+        <name>CONFIDENTIAL_FILTER</name>
+        <marker>CONFIDENTIAL</marker>
+        <onMatch>DENY</onMatch>
+        <onMismatch>NEUTRAL</onMismatch>
+    </turboFilter>
+
+    <springProfile name="!local">
+        <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                    <valueMasker class="com.example.demo5.config.RegexValueMasker"/>
+                </jsonGeneratorDecorator>
+                <providers>
+                    <timestamp><timeZone>UTC</timeZone></timestamp>
+                    <logLevel/>
+                    <message/>
+                    <loggerName/>
+                    <threadName/>
+                    <context/>
+                    <mdc>
+                        <excludeMdcKeyName>timestamp</excludeMdcKeyName>
+                        <excludeMdcKeyName>observedTimestamp</excludeMdcKeyName>
+                        <excludeMdcKeyName>traceId</excludeMdcKeyName>
+                        <excludeMdcKeyName>spanId</excludeMdcKeyName>
+                        <excludeMdcKeyName>traceFlags</excludeMdcKeyName>
+                        <excludeMdcKeyName>severityText</excludeMdcKeyName>
+                        <excludeMdcKeyName>severityNumber</excludeMdcKeyName>
+                        <excludeMdcKeyName>body</excludeMdcKeyName>
+                        <excludeMdcKeyName>resource</excludeMdcKeyName>
+                        <excludeMdcKeyName>instrumentationScope</excludeMdcKeyName>
+                        <excludeMdcKeyName>attributes</excludeMdcKeyName>
+                        <excludeMdcKeyName>eventName</excludeMdcKeyName>
+                    </mdc>
+                    <stackTrace/>
+                </providers>
+            </encoder>
+        </appender>
+
+        <root level="${ROOT_LEVEL}">
+            <appender-ref ref="JSON_CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="local">
+        <root level="${ROOT_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+</configuration>
