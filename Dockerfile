@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine
+FROM amazoncorretto:23-alpine
 WORKDIR /service
 RUN adduser -D appuser && \
     chown -R appuser:appuser /service
