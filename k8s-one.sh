@@ -29,7 +29,8 @@ install_ingress() {
     --set controller.hostPort.enabled=true \
     --set controller.hostPort.ports.http=80 \
     --set controller.hostPort.ports.https=443 \
-    --set controller.service.type=ClusterIP
+    --set controller.service.type=ClusterIP \
+    --set controller.progressDeadlineSeconds=600
 
   echo "==> Waiting for ingress controller..."
   kubectl wait -n ingress-nginx \

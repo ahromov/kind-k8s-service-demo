@@ -27,8 +27,8 @@
   "homepage": "https://github.com/mtb-digital/alias-token-service#readme",
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.7.4"
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.6"
   },
   "dependencies": {
     "commander": "^14.0.2",
