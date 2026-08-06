@@ -39,7 +39,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   datasource:
-    url: #jdbc:postgresql://localhost:5432/demo
+    url: jdbc:postgresql://localhost:5432/postgres
     username: #postgres
     password: #postgres
   liquibase:

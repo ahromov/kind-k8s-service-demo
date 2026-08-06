@@ -28,6 +28,7 @@
         <springdoc-openapi-maven-plugin.version>1.1</springdoc-openapi-maven-plugin.version>
         <git-commit-id-plugin.version>6.0.0</git-commit-id-plugin.version>
         <logstash.version>7.2</logstash.version>
+        <commons-compress.version>1.27.1</commons-compress.version>
     </properties>
 
     <dependencyManagement>
@@ -38,6 +39,11 @@
             <version>2025.0.0</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${commons-compress.version}</version>
         </dependency>
     </dependencies>
     </dependencyManagement>
@@ -50,10 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-liquibase</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,6 +94,10 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
