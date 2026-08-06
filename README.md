@@ -68,6 +68,12 @@ chmod +x k8s-one.sh deploy-app.sh
 - port mappings `80 → 80` і `18443 → 443`;
 - встановлення `ingress-nginx`.
 
+Опційно, можна задати к-сть нод вкластері при створенні: 
+
+```bash
+./k8s-one.sh up 2
+```
+
 Видалити кластер:
 
 ```bash
